@@ -12,6 +12,6 @@ RUN ./qsym/setup_docker.sh
 RUN cd qsym && pip install .
 RUN ln -s /workdir/fuzzamos/afl-fuzz /bin/
 RUN ln -s /workdir/fuzzamos/run_qsym_afl /bin/
-RUN ln -s /workdir/fuzzamos/generators /bin/
+RUN ln -s /workdir/fuzzamos/generators/* /bin/
 
 ENV AFL_PATH=/workdir/fuzzamos/afl/

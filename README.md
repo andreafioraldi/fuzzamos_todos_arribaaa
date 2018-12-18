@@ -47,7 +47,7 @@ cd ~/directory/with/fuzzer/target/
 Terminal 3:
 
 ~~~~{.sh}
-docker run --cap-add=SYS_PTRACE -v "~/directory/with/fuzzer/target/:/fuzz_dir/" -it fuzzamos /bin/bash
+docker run --cap-add=SYS_PTRACE -v "/directory/with/fuzzer/target/:/fuzz_dir/" -it fuzzamos /bin/bash
 cd /fuzz_dir
 run_qsym_afl -a afl-slave -o ./test_output -n qsym -- ./fuzz_target
 ~~~~
