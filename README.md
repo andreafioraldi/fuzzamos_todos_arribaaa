@@ -2,6 +2,8 @@
 
 ## QSYM on docker
 
+Some build tricks + new arguments for run_qsym_afl.
+
 ### why?
 
 AFL and docker are not good friends, so with this scripts I can run QSYM on docker (ubuntu 16.04) and AFL on the host (ubuntu 18.04).
@@ -55,6 +57,8 @@ For Qemu mode add -Q to the arguments of afl-fuzz and run_qsym_afl.
 ## initial test cases generators
 
 Some custom generators for initial test cases, sometimes using angr, sometimes not.
+
+Pwntools required on python 2, angr on python 3.
 
 ### concrete generator
 
