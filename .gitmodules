@@ -1,0 +1,6 @@
+[submodule "afl"]
+	path = afl
+	url = https://github.com/abiondo/afl
+[submodule "qsym/third_party/z3"]
+	path = qsym/third_party/z3
+	url = https://github.com/Z3Prover/z3
