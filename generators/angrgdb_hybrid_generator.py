@@ -29,7 +29,7 @@ try:
 except:
     raise ValueError('the breakpoint is not an address')
 
-gdb_args = ["gdb", "-q", "-nh", "-ex", "b *0x%x" % bpt, "-ex", "run", "-ex", "python input_dir='%s'" % args.input, "-x", os.path.dirname(os.path.realpath(__file__)) + "/angrgdb_inputs.py"]
+gdb_args = ["gdb", "-q", "-nh", "-ex", "b *0x%x" % bpt, "-ex", "run", "-ex", "python input_dir='%s'" % args.input, "-x", os.path.dirname(os.path.realpath(__file__)) + "/angrgdb_generator.py"]
 
 test_input = ""
 
@@ -58,8 +58,10 @@ p.interactive("")
 
 os.kill(p.pid, signal.SIGINT)
 
-p.recvuntil("inputs.\n")
+print p.recv()
+#print p.recvuntil("inputs.\n")
 p.close()
+
 
 for d in os.listdir(args.input):
     if d.startswith("test_angrgdb"):

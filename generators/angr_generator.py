@@ -65,19 +65,36 @@ print()
 print("Stopped.")
 
 for i in range(len(simgr.active)):
-    print("Saving active state", simgr.active[i])
-    with open(os.path.join(glob.glob(args.input)[0], "test_angr_active_%d" % i), "wb") as f:
-        f.write(simgr.active[i].posix.dumps(0))
+    try:
+        print("Saving active state", simgr.active[i])
+        with open(os.path.join(glob.glob(args.input)[0], "test_angr_active_%d" % i), "wb") as f:
+            f.write(simgr.active[i].posix.dumps(0))
+    except Exception as e:
+        print("Failed:", e)
 
 for i in range(len(simgr.deadended)):
-    print("Saving deadended state", simgr.deadended[i])
-    with open(os.path.join(glob.glob(args.input)[0], "test_angr_deadended_%d" % i), "wb") as f:
-        f.write(simgr.deadended[i].posix.dumps(0))
+    try:
+        print("Saving deadended state", simgr.deadended[i])
+        with open(os.path.join(glob.glob(args.input)[0], "test_angr_deadended_%d" % i), "wb") as f:
+            f.write(simgr.deadended[i].posix.dumps(0))
+    except Exception as e:
+        print("Failed:", e)
 
 for i in range(len(simgr.unconstrained)):
-    print("Saving unconstrained state", simgr.unconstrained[i])
-    with open(os.path.join(glob.glob(args.input)[0], "test_angr_unconstrained_%d" % i), "wb") as f:
-        f.write(simgr.unconstrained[i].posix.dumps(0))
+    try:
+        print("Saving unconstrained state", simgr.unconstrained[i])
+        with open(os.path.join(glob.glob(args.input)[0], "test_angr_unconstrained_%d" % i), "wb") as f:
+            f.write(simgr.unconstrained[i].posix.dumps(0))
+    except Exception as e:
+        print("Failed:", e)
+
+for i in range(len(simgr.errored)):
+    try:
+        print("Saving errored state", simgr.errored[i])
+        with open(os.path.join(glob.glob(args.input)[0], "test_angr_errored_%d" % i), "wb") as f:
+            f.write(simgr.errored[i].posix.dumps(0))
+    except Exception as e:
+        print("Failed:", e)
 
 print()
 print("Created", len(simgr.active)+len(simgr.deadended)+len(simgr.unconstrained), "inputs.")
