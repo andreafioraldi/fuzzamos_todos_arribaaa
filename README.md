@@ -1,5 +1,10 @@
 # fuzzamos todos arribaaaaaaa
 
+~~~~{.sh}
+git clone https://github.com/andreafioraldi/fuzzamos_todos_arribaaa
+mv fuzzamos_todos_arribaaa ~/fuzzamos
+~~~~
+
 ## QSYM on docker
 
 Some build tricks + new arguments for run_qsym_afl.
@@ -47,7 +52,8 @@ cd ~/directory/with/fuzzer/target/
 Terminal 3:
 
 ~~~~{.sh}
-docker run --cap-add=SYS_PTRACE -v "/directory/with/fuzzer/target/:/fuzz_dir/" -it fuzzamos /bin/bash
+cd ~/directory/with/fuzzer/target/
+docker run --cap-add=SYS_PTRACE -v "`pwd`:/fuzz_dir/" -it fuzzamos /bin/bash
 cd /fuzz_dir
 run_qsym_afl -a afl-slave -o ./test_output -n qsym -- ./fuzz_target
 ~~~~

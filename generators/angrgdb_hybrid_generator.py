@@ -29,7 +29,14 @@ try:
 except:
     raise ValueError('the breakpoint is not an address')
 
-gdb_args = ["gdb", "-q", "-nh", "-ex", "b *0x%x" % bpt, "-ex", "run", "-ex", "python input_dir='%s'" % args.input, "-x", os.path.dirname(os.path.realpath(__file__)) + "/angrgdb_generator.py"]
+gdb_args = [
+    "gdb", "-q", "-nh",
+    "-ex", "set pagination off",
+    "-ex", "b *0x%x" % bpt,
+    "-ex", "run",
+    "-ex", "python input_dir='%s'" % args.input,
+    "-x", os.path.dirname(os.path.realpath(__file__)) + "/angrgdb_generator.py"
+]
 
 test_input = ""
 
@@ -58,10 +65,10 @@ p.interactive("")
 
 os.kill(p.pid, signal.SIGINT)
 
-print p.recv()
-#print p.recvuntil("inputs.\n")
+p.interactive("")
 p.close()
 
+print("Adding concrete inputs...")
 
 for d in os.listdir(args.input):
     if d.startswith("test_angrgdb"):
@@ -70,5 +77,5 @@ for d in os.listdir(args.input):
         with open(os.path.join(args.input, d), "wb") as f:
             f.write(test_input + content)
 
-
+print("Concrete inputs added")
 
